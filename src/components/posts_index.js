@@ -47,7 +47,7 @@ class PostsIndex extends Component{
 }
 
 function mapStateToProps(state) { // 这里的state是全局的state，是reducer产生的。
-  return {posts: state.postsIndex.all} // 这里的state.posts是root reducer里产生的。
+  return {posts: state.posts.all} // 这里的state.posts是root reducer里产生的。
                                             // 这里的.all是reducers/posts_index.js 里产生的，在return的新的state里定义的
 //  ComponentWillMount触发了fetchPosts这个action creator，发送了一个ajax请求，返回的数据在reducer-posts_index.js里，放在了state的all属性里。
 }

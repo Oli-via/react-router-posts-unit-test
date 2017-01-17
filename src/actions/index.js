@@ -7,6 +7,7 @@ const KEY = '?key=olivialovesya'
 export const FETCH_POSTS_INDEX = 'FETCH_POSTS_INDEX'
 export const CREATE_POST = 'CREATE_POST'
 export const FETCH_POST = 'FETCH_POST'
+export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 
 
 export function fetchPosts() {
@@ -30,5 +31,11 @@ export function fetchPost(props) {
   return {
     type: FETCH_POST,
     payload: request
+  }
+}
+
+export function clearDetail() {
+  return {
+    type: CLEAR_DETAIL
   }
 }
