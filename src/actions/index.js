@@ -26,8 +26,8 @@ export function createPost(props) {
   }
 }
 
-export function fetchPost(props) {
-  const request = axios.get(`${ROOT_URL}/posts/${props.id}${KEY}`); //const request要写在函数里面
+export function fetchPost(id) {
+  const request = axios.get(`${ROOT_URL}/posts/${id}${KEY}`); //const request要写在函数里面
   return {
     type: FETCH_POST,
     payload: request

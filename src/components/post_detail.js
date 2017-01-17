@@ -10,7 +10,7 @@ import { Link } from 'react-router'
 class PostDetail extends Component{
   componentWillMount(){
     // 调用action creator的方法是*****this.props.*****
-    this.props.fetchPost({id: this.props.params.id})
+    this.props.fetchPost(this.props.params.id)
   }
   componentWillUnmount(){
     this.props.clearDetail()
