@@ -8,6 +8,8 @@ export const FETCH_POSTS_INDEX = 'FETCH_POSTS_INDEX'
 export const CREATE_POST = 'CREATE_POST'
 export const FETCH_POST = 'FETCH_POST'
 export const CLEAR_DETAIL = 'CLEAR_DETAIL'
+export const DELETE_POST = 'DELETE_POST'
+export const CLEAR_POSTS = 'CLEAR_POSTS'
 
 
 export function fetchPosts() {
@@ -37,5 +39,19 @@ export function fetchPost(id) {
 export function clearDetail() {
   return {
     type: CLEAR_DETAIL
+  }
+}
+
+export function clearPosts() {
+  return {
+    type: CLEAR_POSTS
+  }
+}
+
+export function deletePost(id) {
+  const request = axios.delete(`${ROOT_URL}/posts/${id}${KEY}`)
+  return {
+    type: DELETE_POST,
+    payload: request
   }
 }

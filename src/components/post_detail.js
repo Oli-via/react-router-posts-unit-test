@@ -1,9 +1,9 @@
 /**
  * Created by aliyy on 2017/1/16.
  */
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import { connect } from 'react-redux'
-import { fetchPost, clearDetail } from '../actions/index'
+import { fetchPost, clearDetail, deletePost } from '../actions/index'
 import { bindActionCreators} from 'redux'
 import { Link } from 'react-router'
 
@@ -15,17 +15,28 @@ class PostDetail extends Component{
   componentWillUnmount(){
     this.props.clearDetail()
   }
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  deletePost(){
+    this.props.deletePost(this.props.params.id)
+      .then(()=>{
+      this.context.router.push("/")
+    })
+  }
   render(){
     if (!this.props.post) {
       return <div>loading...</div>
     }
     return (
       <div>
-        <Link className="btn btn-default" to="/">back</Link>
-        <h3>Title</h3>
-        <div>{this.props.post.title}</div>
-        <h4>Content</h4>
-        <p> {this.props.post.content}</p>
+        <h3>Title：{this.props.post.title}</h3>
+        <h5>Categories：{this.props.post.categories}</h5>
+        <p>{this.props.post.content}</p>
+        <div>
+          <Link className="btn btn-success" to="/">back</Link>
+          <button className="ml20 btn btn-default" to="/" onClick={this.deletePost.bind(this)}>delete</button>
+        </div>
       </div>
     )
   }
@@ -38,6 +49,6 @@ function mapStateToProps(state) { //！！！这里要传入state！！！
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchPost, clearDetail}, dispatch)
+  return bindActionCreators({fetchPost, clearDetail, deletePost}, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)

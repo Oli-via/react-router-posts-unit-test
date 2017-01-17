@@ -4,12 +4,15 @@
 import React, {Component} from 'react'
 import { connect} from 'react-redux'
 // import { bindActionCreators} from 'redux'
-import { fetchPosts } from '../actions/index'
+import { fetchPosts, clearPosts } from '../actions/index'
 import { Link } from 'react-router'
 
 class PostsIndex extends Component{
   componentWillMount(){
     this.props.fetchPosts();  // 触发了一个action
+  }
+  componentWillUnmount(){
+    this.props.clearPosts();  // 触发了一个action
   }
   renderPosts(){
     if (!this.props.posts){
@@ -57,5 +60,5 @@ function mapStateToProps(state) { // 这里的state是全局的state，是reduce
   return bindActionCreators({fetchPosts}, dispatch)
 }*/
 // 以上方法可以简写为以下的形式，就不需要引入bindActionCreators，仍然可以give access to this.pops.fetchPosts
-export default connect(mapStateToProps, {fetchPosts})(PostsIndex)
+export default connect(mapStateToProps, {fetchPosts, clearPosts})(PostsIndex)
 // export default connect(null, mapDispatchToProps)(PostsIndex)
